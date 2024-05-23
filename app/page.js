@@ -73,5 +73,6 @@ export default function Home() {
       </div>
     </div>
   );
+  // VercelToken-M8tX0xKQxcX3afdEdGjMERUM
   // https://rainbowit.net/html/inbio/index-white-version.html
 }
