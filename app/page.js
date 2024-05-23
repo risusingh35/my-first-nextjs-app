@@ -17,7 +17,7 @@ export default function Home() {
         <div className='w-2/3 flex flex-col justify-arround items-start p-8  items-center h-min'>
           <p className='text-xl'>Welcome to my world</p>
           <h1 className='text-5xl font-extrabold mt-4'>
-            Hi, I'm
+            Hi, I&rsquo;m
             <span className='text-[#ff014f] ml-2'>
               RISU SINGH
             </span>
