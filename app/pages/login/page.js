@@ -1,27 +1,13 @@
 "use client"
 import React, { useCallback, useRef, useState } from "react";
+import { useRouter } from 'next/navigation'
 import {
   LoginSocialGoogle,
-  LoginSocialAmazon,
-  LoginSocialFacebook,
-  LoginSocialGithub,
-  LoginSocialInstagram,
-  LoginSocialLinkedin,
-  LoginSocialMicrosoft,
-  LoginSocialPinterest,
-  LoginSocialTwitter
+  LoginSocialFacebook
 } from "reactjs-social-login";
-
-// CUSTOMIZE ANY UI BUTTON
 import {
   FacebookLoginButton,
-  GoogleLoginButton,
-  GithubLoginButton,
-  AmazonLoginButton,
-  InstagramLoginButton,
-  LinkedInLoginButton,
-  MicrosoftLoginButton,
-  TwitterLoginButton
+  GoogleLoginButton
 } from "react-social-login-buttons";
 
 const REDIRECT_URI = "http://localhost:3000/pages/login";
@@ -29,6 +15,7 @@ const REDIRECT_URI = "http://localhost:3000/pages/login";
 import axiosInstance from '../../utils/axios';
 
 export default function LoginForm() {
+  const router = useRouter();
   const [email, setEmail] = useState('user@example.com');
   const [password, setPassword] = useState('password');
   const [error, setError] = useState(null);
@@ -43,22 +30,16 @@ export default function LoginForm() {
       localStorage.setItem('token', token);
       console.log('Login successful');
       // Redirect to home page or any other page
-      window.location.href = '/';
+      router.push('/');
     } catch (err) {
       setError(err.response ? err.response.data.message : err.message);
     }
   };
+
   const [provider, setProvider] = useState("");
   const [profile, setProfile] = useState();
-  const amazonRef = useRef();
-  const instagramRef = useRef();
   const googleRef = useRef();
   const facebookRef = useRef();
-  const microsoftRef = useRef();
-  const linkedinRef = useRef();
-  const githubRef = useRef();
-  const pinterestRef = useRef();
-  const twitterRef = useRef();
 
   const onLoginStart = useCallback(() => {
     alert("login start");
@@ -73,9 +54,10 @@ export default function LoginForm() {
     setProvider("");
     alert("logout success");
   }, []);
+
   return (
-    <div className="flex items-center justify-center h-full  bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-lg h-full max-w-md w-1/2">
+    <div className="flex items-center justify-center h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-1/2">
         <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -107,8 +89,8 @@ export default function LoginForm() {
           </button>
         </form>
       </div>
-      <div className="bg-pink-200 p-8 rounded-lg shadow-lg h-full max-w-md w-1/2">
-      <h2 className="text-2xl font-bold mb-6 text-center">Social Login</h2>
+      <div className="bg-pink-200 p-8 rounded-lg shadow-lg max-w-md w-1/2">
+        <h2 className="text-2xl font-bold mb-6 text-center">Social Login</h2>
         <LoginSocialFacebook
           ref={facebookRef}
           appId={"78078035866-knakb2rn4g1od8au9uh25ptrbpb52l3b.apps.googleusercontent.com"}
@@ -145,7 +127,6 @@ export default function LoginForm() {
         >
           <GoogleLoginButton />
         </LoginSocialGoogle>
-
       </div>
     </div>
   );

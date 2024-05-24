@@ -1,6 +1,6 @@
-// utils/axios.js
-import axios from 'axios';
 
+import axios from 'axios';
+import { useRouter } from 'next/router';
 const axiosInstance = axios.create({
   baseURL: 'http://localhost:4000',
   headers: {
@@ -27,7 +27,7 @@ axiosInstance.interceptors.response.use(
     if (error.response && error.response.status === 401) {
       // Handle token expiration or unauthorized access
       localStorage.removeItem('token');
-      window.location.href = '/pages/login'; // Redirect to login page
+      // window.location.href = '/pages/login'; // Redirect to login page
     }
     return Promise.reject(error);
   }
