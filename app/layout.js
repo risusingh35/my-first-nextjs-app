@@ -23,3 +23,4 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+// google app key:AIzaSyBl2BsVBHUuayIQLIeN39bCHQwDogYKPkU

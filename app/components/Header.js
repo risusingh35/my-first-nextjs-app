@@ -22,6 +22,9 @@ const HeaderNav = () => {
                     <Link href="/pages/contact">
                         <span className="hover:text-gray-400">Contact</span>
                     </Link>
+                    <Link href="/pages/login">
+                        <span className="hover:text-gray-400">Login</span>
+                    </Link>
                 </div>
 
 
