@@ -1,21 +1,28 @@
 "use client"
 import React, { useCallback, useRef, useState } from "react";
-import { useRouter } from 'next/navigation'
-import {
-  LoginSocialGoogle,
-  LoginSocialFacebook
-} from "reactjs-social-login";
+// import { useRouter } from 'next/navigation'
+import dynamic from 'next/dynamic';
+
+const LoginSocialGoogleClient = dynamic(() => import('reactjs-social-login').then(module => module.LoginSocialGoogle), { ssr: false });
+const LoginSocialFacebookClient = dynamic(() => import('reactjs-social-login').then(module => module.LoginSocialFacebook), { ssr: false });
+
+// Now you can use LoginSocialGoogleClient and LoginSocialFacebookClient components in your JSX code
+
+// import {
+//   LoginSocialGoogle,
+//   LoginSocialFacebook
+// } from "reactjs-social-login";
 import {
   FacebookLoginButton,
   GoogleLoginButton
 } from "react-social-login-buttons";
 
-const REDIRECT_URI = "http://localhost:3000/pages/login";
+// const REDIRECT_URI = "http://localhost:3000/pages/login";
 
 import axiosInstance from '../../utils/axios';
 
 export default function LoginForm() {
-  const router = useRouter();
+//   const router = useRouter();
   const [email, setEmail] = useState('user@example.com');
   const [password, setPassword] = useState('password');
   const [error, setError] = useState(null);
@@ -30,7 +37,7 @@ export default function LoginForm() {
       localStorage.setItem('token', token);
       console.log('Login successful');
       // Redirect to home page or any other page
-      router.push('/');
+    //   router.push('/');
     } catch (err) {
       setError(err.response ? err.response.data.message : err.message);
     }
@@ -91,7 +98,7 @@ export default function LoginForm() {
       </div>
       <div className="bg-pink-200 p-8 rounded-lg shadow-lg max-w-md w-1/2">
         <h2 className="text-2xl font-bold mb-6 text-center">Social Login</h2>
-        <LoginSocialFacebook
+        <LoginSocialFacebookClient
           ref={facebookRef}
           appId={"78078035866-knakb2rn4g1od8au9uh25ptrbpb52l3b.apps.googleusercontent.com"}
           onLoginStart={onLoginStart}
@@ -107,9 +114,9 @@ export default function LoginForm() {
           }}
         >
           <FacebookLoginButton />
-        </LoginSocialFacebook>
+        </LoginSocialFacebookClient>
 
-        <LoginSocialGoogle
+        <LoginSocialGoogleClient
           ref={googleRef}
           client_id="1024616921919-hns9m0q39jb21qrp4kpb57kti2sd5t1n.apps.googleusercontent.com"
           onLogoutFailure={onLogoutFailure}
@@ -126,7 +133,7 @@ export default function LoginForm() {
           }}
         >
           <GoogleLoginButton />
-        </LoginSocialGoogle>
+        </LoginSocialGoogleClient>
       </div>
     </div>
   );
