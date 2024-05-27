@@ -2,7 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-
+import { Providers } from "./store/provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -13,14 +13,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-       <>
+       <Providers>
        <body className={inter.className}>
         <Header />
         <main className="pb-20">{children}</main>
         <Footer />
       </body>
-    </>
+    </Providers>
     </html>
   );
 }
-// google app key:AIzaSyBl2BsVBHUuayIQLIeN39bCHQwDogYKPkU

@@ -1,7 +1,9 @@
+"use client";
 import React from 'react';
 import Link from 'next/link';
-
+import {  useSelector } from "react-redux";
 const HeaderNav = () => {
+    const count = useSelector((state) => state.counter.value); // Access the counter state
     return (
         <nav className="flex justify-between items-center h-20 px-4 bg-gray-800 text-white">
             <div className='w-screen'>
@@ -11,7 +13,7 @@ const HeaderNav = () => {
                         <span className="text-xl font-bold">Risu Singh</span>
                     </Link>
                     <Link href="/">
-                        <span className="hover:text-gray-400">Home</span>
+                        <span className="hover:text-gray-400">Home {count}</span>
                     </Link>
                     <Link href="/pages/about">
                         <span className="hover:text-gray-400">About</span>
@@ -28,6 +30,9 @@ const HeaderNav = () => {
                  
                     <Link href="/pages/shopping">
                         <span className="hover:text-gray-400">Shopping</span>
+                    </Link>
+                    <Link href="/pages/counter">
+                        <span className="hover:text-gray-400">Counter</span>
                     </Link>
                 </div>
 
