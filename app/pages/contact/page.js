@@ -1,11 +1,15 @@
 "use client"
-import FloatingLabelInput from "@/app/components/form/FloatingLabelInput";
 import { useState } from "react";
+import FloatingLabelInput from "@/app/components/form/FloatingLabelInput";
+import FloatingLabelTextarea from "@/app/components/form/FloatingLabelTextarea";
+import {operationAPI} from '../../utils/axios';
 export default function Contact() {
+  const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     fullName: '',
     companyEmail: '',
-    phone:''
+    phone:'',
+    message:''
   });
 
   const handleChange = (e) => {
@@ -16,10 +20,18 @@ export default function Contact() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
     console.log('Form Data:', formData);
-  };
+    try {
+      const response = await operationAPI.post('/contactus',formData);
+      console.log('Response',response);
+    }  catch (err) {
+      setError(err.response ? err.response.data.message : err.message);
+    }
+    }
+  
   return (
     <div className='w-full h-full'>
       <div className='flex'>
@@ -60,6 +72,14 @@ export default function Contact() {
                 value={formData.phone}
                 onChange={handleChange}
               />
+              <FloatingLabelTextarea
+                label="Message"
+                type="phone"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+              />
+                 {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
               <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" type="submit">Submit</button>
             </form>
           </div>

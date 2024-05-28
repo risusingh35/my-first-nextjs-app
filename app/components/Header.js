@@ -13,7 +13,7 @@ const HeaderNav = () => {
                         <span className="text-xl font-bold">Risu Singh</span>
                     </Link>
                     <Link href="/">
-                        <span className="hover:text-gray-400">Home {count}</span>
+                        <span className="hover:text-gray-400">Home</span>
                     </Link>
                     <Link href="/pages/about">
                         <span className="hover:text-gray-400">About</span>

@@ -19,7 +19,7 @@ import {
 
 // const REDIRECT_URI = "http://localhost:3000/pages/login";
 
-import axiosInstance from '../../utils/axios';
+import {operationAPI} from '../../utils/axios';
 
 export default function LoginForm() {
 //   const router = useRouter();
@@ -32,7 +32,7 @@ export default function LoginForm() {
     setError(null);
 
     try {
-      const response = await axiosInstance.post('/login', { email, password });
+      const response = await operationAPI.post('/login', { email, password });
       const { token } = response.data;
       localStorage.setItem('token', token);
       console.log('Login successful');

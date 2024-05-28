@@ -1,16 +1,11 @@
-//counterSlice.jsx
-
-"use client"; //this is a client side component
-
-import { createSlice } from "@reduxjs/toolkit";
-
-const initialState = {
-  value: 0,
-};
+// store/counterSlice.js
+import { createSlice } from '@reduxjs/toolkit';
 
 export const counterSlice = createSlice({
-  name: "counter",
-  initialState,
+  name: 'counter',
+  initialState: {
+    value: 0,
+  },
   reducers: {
     increment: (state) => {
       state.value += 1;
@@ -18,12 +13,9 @@ export const counterSlice = createSlice({
     decrement: (state) => {
       state.value -= 1;
     },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload;
-    },
   },
 });
 
-export const { increment, decrement, incrementByAmount } = counterSlice.actions
+export const { increment, decrement } = counterSlice.actions;
 
 export default counterSlice.reducer;
