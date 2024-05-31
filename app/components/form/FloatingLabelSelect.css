@@ -1,0 +1,40 @@
+ 
+.form-group {
+    position: relative;
+    margin-bottom: 1.5em;
+}
+
+.form-control {
+    font-size: 1em;
+    padding: 0.5em;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    appearance: none; /* Removes default styling of select */
+    background-color: white;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+}
+
+.form-label {
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    transform: translateY(-50%);
+    transition: all 0.2s ease-out;
+    background-color: white; /* Matches the background color of the form control */
+    padding: 0 5px;
+    color: #aaa;
+    pointer-events: none;
+}
+
+.form-control:focus + .form-label,
+.form-control:not([value=""]) + .form-label {
+    top: -10px;
+    left: 0px;
+    font-size: 0.75em;
+    color: #007bff;
+}

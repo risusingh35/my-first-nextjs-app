@@ -34,6 +34,9 @@ const HeaderNav = () => {
                     <Link href="/pages/counter">
                         <span className="hover:text-gray-400">Counter</span>
                     </Link>
+                    <Link href="/pages/users/list">
+                        <span className="hover:text-gray-400">Users</span>
+                    </Link>
                 </div>
 
 
