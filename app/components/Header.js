@@ -5,16 +5,12 @@ import {  useSelector } from "react-redux";
 const HeaderNav = () => {
     const count = useSelector((state) => state.counter.value); // Access the counter state
     return (
-        <nav className="flex justify-between items-center h-20 px-4 bg-gray-800 text-white">
-            <div className='w-screen'>
-                <div className='mx-auto flex justify-around items-center'>
-                    <Link href="/" className="flex items-center">
-                        <img className='rounded-full' src='https://media.licdn.com/dms/image/D4E03AQF8VYPM11U_VQ/profile-displayphoto-shrink_200_200/0/1682953959524?e=1721865600&v=beta&t=heQCVumdsRKd5qAUQsvQqgDMQhj7uA3msRu2fijm0Pk' height={70} width={70} />
-                        <span className="text-xl font-bold">Risu Singh</span>
-                    </Link>
-                    <Link href="/">
-                        <span className="hover:text-gray-400">Home</span>
-                    </Link>
+        <nav className="bg-gray-800 text-white">
+            <div className="container mx-auto flex flex-wrap items-center justify-between h-20 px-4">
+                <Link href="/" className="flex items-center">
+                    <img className="rounded-full" src="https://media.licdn.com/dms/image/D4E03AQF8VYPM11U_VQ/profile-displayphoto-shrink_200_200/0/1682953959524?e=1721865600&v=beta&t=heQCVumdsRKd5qAUQsvQqgDMQhj7uA3msRu2fijm0Pk" height={70} width={70} alt="Logo" />
+                </Link>
+                <div className="flex-grow flex items-center justify-around space-x-4 mt-4 lg:mt-0">
                     <Link href="/pages/about">
                         <span className="hover:text-gray-400">About</span>
                     </Link>
@@ -27,7 +23,6 @@ const HeaderNav = () => {
                     <Link href="/pages/login">
                         <span className="hover:text-gray-400">Login</span>
                     </Link>
-                 
                     <Link href="/pages/shopping">
                         <span className="hover:text-gray-400">Shopping</span>
                     </Link>
@@ -38,8 +33,6 @@ const HeaderNav = () => {
                         <span className="hover:text-gray-400">Users</span>
                     </Link>
                 </div>
-
-
             </div>
         </nav>
     );
