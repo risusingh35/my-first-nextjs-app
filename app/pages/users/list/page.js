@@ -32,10 +32,23 @@ const UserList = () => {
   };
   useEffect(() => {
     if (debouncedSearchTerm.length >= 3) {
-      console.log("Searching for:", debouncedSearchTerm);
+      search(debouncedSearchTerm)
+    }else if(!debouncedSearchTerm.length){
+      fetchAllUsers();
     }
   }, [debouncedSearchTerm]);
-
+const search=async(searchQuery)=>{
+  console.log("Searching for:", searchQuery);
+  try {
+    const response = await operationAPI.get(`/users/search`, {
+      params: { query: searchQuery }
+    });
+    console.log("userData", response);
+    setUsersData(response.data);
+  } catch (error) {
+    console.error("Error fetching user data:", error);
+  }
+}
   const handleAddEditButtonClick = (id) => {
     if (id) {
       router.push(`/pages/users/addEdit/${id}`, { scroll: false });

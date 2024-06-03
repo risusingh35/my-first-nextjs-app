@@ -34,7 +34,7 @@ const ConfirmModal = ({
               {message} <span className="text-red-500">{selectedItem}</span>
             </p>
             <p className="text-sm text-gray-500">
-              Type "{selectedItem}" to confirm your action
+              Type &quot; {selectedItem} &quot; to confirm your action
             </p>
             <input
               type="text"
