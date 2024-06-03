@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, CSSProperties } from "react";
 import ListingHeaderSection from "@/app/components/ListingHeaderSection";
 import ConfirmModal from "@/app/components/ConfirmModal";
 import useDebounce from "@/app/utils/useDebounce";
@@ -10,14 +10,20 @@ import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { MoonLoader } from "react-spinners";
 const UserList = () => {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(false);
+  const [isLoader, setIsLoader] = useState(true);
   const [usersData, setUsersData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
-
+  const override = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "red",
+  };
   useEffect(() => {
     fetchAllUsers();
   }, []);
@@ -26,29 +32,30 @@ const UserList = () => {
       const response = await operationAPI.get(`/users`);
       console.log("userData", response);
       setUsersData(response.data);
+      setIsLoader(false)
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
   };
   useEffect(() => {
     if (debouncedSearchTerm.length >= 3) {
-      search(debouncedSearchTerm)
-    }else if(!debouncedSearchTerm.length){
+      search(debouncedSearchTerm);
+    } else if (!debouncedSearchTerm.length) {
       fetchAllUsers();
     }
   }, [debouncedSearchTerm]);
-const search=async(searchQuery)=>{
-  console.log("Searching for:", searchQuery);
-  try {
-    const response = await operationAPI.get(`/users/search`, {
-      params: { query: searchQuery }
-    });
-    console.log("userData", response);
-    setUsersData(response.data);
-  } catch (error) {
-    console.error("Error fetching user data:", error);
-  }
-}
+  const search = async (searchQuery) => {
+    console.log("Searching for:", searchQuery);
+    try {
+      const response = await operationAPI.get(`/users/search`, {
+        params: { query: searchQuery },
+      });
+      console.log("userData", response);
+      setUsersData(response.data);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
   const handleAddEditButtonClick = (id) => {
     if (id) {
       router.push(`/pages/users/addEdit/${id}`, { scroll: false });
@@ -145,6 +152,7 @@ const search=async(searchQuery)=>{
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <ToastContainer />
+
       <ListingHeaderSection
         title="Users List"
         searchPlaceholder="Search Users"
@@ -152,6 +160,11 @@ const search=async(searchQuery)=>{
         onButtonClick={handleAddEditButtonClick}
         buttonText="Create Users"
       />
+      {isLoader && (
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50  p-5">
+          <MoonLoader color="#ff014f" />
+        </div>
+      )}
 
       <table className="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
