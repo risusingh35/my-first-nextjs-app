@@ -1,4 +1,4 @@
-const position=[
+const role=[
     {
         value:'devfullstackdev',label:'Developer-Full Stack'
     },
@@ -14,4 +14,4 @@ const position=[
 
 ]
 
-export default position
+export default role

@@ -10,6 +10,7 @@ import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import role from "@/app/utils/staticData/role";
 import { MoonLoader } from "react-spinners";
 const UserList = () => {
   const router = useRouter();
@@ -76,7 +77,7 @@ const UserList = () => {
 
     const del = await operationAPI.delete(`/users/${selectedItem._id}`);
     toast("User Deleted Successful", {
-      position: "top-right",
+      role: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -95,6 +96,16 @@ const UserList = () => {
       }
       return "";
     };
+    const getRole = () => {
+      if (user.role) {
+        const roleLabel = role.find(r => r.value === user.role);
+        console.log('roleLabel', roleLabel);
+        return roleLabel ? roleLabel.label : "";
+      }
+      return "";
+    };
+    
+    
     return (
       <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
         <th className="px-6 py-4 text-center">
@@ -114,7 +125,7 @@ const UserList = () => {
             </small>
           </div>
         </td>
-        <td className="px-6 py-4 text-center">{user.position}</td>
+        <td className="px-6 py-4 text-center">{getRole()}</td>
         <td className="px-6 py-4 text-center">
           <div className="flex justify-center">
             <div
@@ -176,7 +187,7 @@ const UserList = () => {
               Contact
             </th>
             <th scope="col" className="px-6 py-3">
-              Position
+              Role
             </th>
             <th scope="col" className="px-6 py-3">
               Status

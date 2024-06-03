@@ -1,6 +1,6 @@
  
 .form-group {
-    position: relative;
+    role: relative;
     margin-bottom: 1.5em;
 }
 
@@ -20,7 +20,7 @@
 }
 
 .form-label {
-    position: absolute;
+    role: absolute;
     top: 50%;
     left: 8px;
     transform: translateY(-50%);

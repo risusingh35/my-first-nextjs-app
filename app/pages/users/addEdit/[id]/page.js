@@ -5,7 +5,7 @@ import { useRouter, useParams } from "next/navigation";
 import FloatingLabelInput from "@/app/components/form/FloatingLabelInput";
 import FloatingLabelSelect from "@/app/components/form/FloatingLabelSelect";
 import FormHeaderWithBackButton from "@/app/components/form/FormHeaderWithBackButton";
-import position from "@/app/utils/staticData/position";
+import role from "@/app/utils/staticData/role";
 import { operationAPI } from "@/app/utils/axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,7 +15,7 @@ const AddEditUser = () => {
   const { id } = useParams();
   const [formState, setUsersData] = useState({
     name: "",
-    position: "",
+    role: "",
     status: false,
     email: "",
     contact: "",
@@ -56,7 +56,7 @@ const AddEditUser = () => {
     
     const formData = new FormData();
     formData.append("name", formState.name);
-    formData.append("position", formState.position);
+    formData.append("role", formState.role);
     formData.append("status", formState.status);
     formData.append("email", formState.email);
     formData.append("contact", formState.contact);
@@ -101,7 +101,7 @@ const AddEditUser = () => {
   };
   const shadowToast= (msg)=>{
     toast(msg, {
-      position: "top-right",
+      role: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -129,10 +129,10 @@ const AddEditUser = () => {
             />
             <FloatingLabelSelect
               label="Select a Position"
-              name="position"
-              value={formState.position}
+              name="role"
+              value={formState.role}
               onChange={handleInputChange}
-              options={position}
+              options={role}
             />
             <FloatingLabelInput
               label="Email"
