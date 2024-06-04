@@ -5,7 +5,7 @@ import { useRouter, useParams } from "next/navigation";
 import FloatingLabelInput from "@/app/components/form/FloatingLabelInput";
 import FloatingLabelSelect from "@/app/components/form/FloatingLabelSelect";
 import FormHeaderWithBackButton from "@/app/components/form/FormHeaderWithBackButton";
-import role from "@/app/utils/staticData/role";
+import roles from "@/app/utils/staticData/roles";
 import { operationAPI ,getAPI} from "@/app/utils/axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -132,7 +132,7 @@ const AddEditUser = () => {
               name="role"
               value={formState.role}
               onChange={handleInputChange}
-              options={role}
+              options={roles}
             />
             <FloatingLabelInput
               label="Email"

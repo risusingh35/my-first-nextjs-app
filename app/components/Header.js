@@ -11,6 +11,9 @@ const HeaderNav = () => {
                     <img className="rounded-full" src="https://media.licdn.com/dms/image/D4E03AQF8VYPM11U_VQ/profile-displayphoto-shrink_200_200/0/1682953959524?e=1721865600&v=beta&t=heQCVumdsRKd5qAUQsvQqgDMQhj7uA3msRu2fijm0Pk" height={70} width={70} alt="Logo" />
                 </Link>
                 <div className="flex-grow flex items-center justify-around space-x-4 mt-4 lg:mt-0">
+                    <Link href="/pages/dashboard">
+                        <span className="hover:text-gray-400">Dashboard</span>
+                    </Link>
                     <Link href="/pages/about">
                         <span className="hover:text-gray-400">About</span>
                     </Link>

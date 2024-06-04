@@ -31,7 +31,7 @@ export default function Footer() {
 
   return (
     <footer className="w-full bg-gray-300">
-      <div className="container mx-auto px-5 py-8 flex flex-col sm:flex-row items-center justify-between">
+      <div className="container mx-auto  flex flex-col sm:flex-row items-center justify-between">
         <div className="flex items-center justify-center md:justify-start text-gray-900 mb-4 sm:mb-0">
           <span className="text-xl font-medium">Risu Singh</span>
         </div>

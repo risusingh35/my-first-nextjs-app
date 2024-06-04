@@ -10,7 +10,7 @@ import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import role from "@/app/utils/staticData/role";
+import roles from "@/app/utils/staticData/roles";
 import { MoonLoader } from "react-spinners";
 const UserList = () => {
   const router = useRouter();
@@ -48,7 +48,7 @@ const UserList = () => {
   const search = async (searchQuery) => {
     console.log("Searching for:", searchQuery);
     try {
-      const response = await getAPI.get(`/users/search`, {
+      const response = await operationAPI.get(`/users/search`, {
         params: { query: searchQuery },
       });
       console.log("userData", response);
@@ -98,7 +98,7 @@ const UserList = () => {
     };
     const getRole = () => {
       if (user.role) {
-        const roleLabel = role.find((r) => r.value === user.role);
+        const roleLabel = roles.find((r) => r.value === user.role);
         console.log("roleLabel", roleLabel);
         return roleLabel ? roleLabel.label : "";
       }
@@ -126,7 +126,7 @@ const UserList = () => {
           </div>
         </td>
 
-        <td className="px-6 py-4 text-center">{getRole()}</td>
+        <td className="px-6 py-4 text-center">{user.role}</td>
         <td className="px-6 py-4 text-center">
           <div className="flex justify-center">
             <div
