@@ -9,6 +9,32 @@ import { AiFillLike } from "react-icons/ai";
 import { FaShareNodes } from "react-icons/fa6";
 import CustomCard from "@/app/components/dashboard/CustomCard";
 const Dashboard = () => {
+  const CardData = [
+    {
+      title: "Earning",
+      icon: <CiDollar/>,
+      symbol: "&#36;",
+      CardText: "967",
+    },
+    {
+      title: "Share",
+      icon: <FaShareNodes/>,
+      symbol: "",
+      CardText: "6739",
+    },
+    {
+      title: "Likes",
+      icon: <AiFillLike/>,
+      symbol: "",
+      CardText: "9827",
+    },
+    {
+      title: "Rating",
+      icon: <FaStar/>,
+      symbol: "",
+      CardText: "8.7",
+    },
+  ];
   const columnOptions = {
     title: {
       text: "My chart",
@@ -111,32 +137,7 @@ const Dashboard = () => {
       },
     ],
   };
-  const CardData = [
-    {
-      title: "Earning",
-      icon: <CiDollar/>,
-      symbol: "&#36;",
-      CardText: "967",
-    },
-    {
-      title: "Share",
-      icon: <FaShareNodes/>,
-      symbol: "",
-      CardText: "6739",
-    },
-    {
-      title: "Likes",
-      icon: <AiFillLike/>,
-      symbol: "",
-      CardText: "9827",
-    },
-    {
-      title: "Rating",
-      icon: <FaStar/>,
-      symbol: "",
-      CardText: "8.7",
-    },
-  ];
+ 
   const pieOptions = {
     // Pie chart options
     chart: {
@@ -176,7 +177,7 @@ const Dashboard = () => {
           <CustomCard
             title={cardItem.title}
             icon={cardItem.icon}
-            currencySymbol={cardItem.symbol}
+            symbol={cardItem.symbol}
             CardText={cardItem.CardText}
           />
         </div>
