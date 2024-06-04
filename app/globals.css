@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* Ensure the html and body take full height */
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  /* Make the body a flex container */
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  /* Make the main content take all available space */
+  main {
+    flex: 1;
+  }
+  
+  /* Optional: style for footer */
+  footer {
+    background-color: #f1f1f1; /* Example background color */
+    padding: 10px;
+    text-align: center;
+  }
+  

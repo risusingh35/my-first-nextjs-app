@@ -33,7 +33,7 @@ const UserList = () => {
       const response = await operationAPI.get(`/users`);
       console.log("userData", response);
       setUsersData(response.data);
-      setIsLoader(false)
+      setIsLoader(false);
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
@@ -98,14 +98,13 @@ const UserList = () => {
     };
     const getRole = () => {
       if (user.role) {
-        const roleLabel = role.find(r => r.value === user.role);
-        console.log('roleLabel', roleLabel);
+        const roleLabel = role.find((r) => r.value === user.role);
+        console.log("roleLabel", roleLabel);
         return roleLabel ? roleLabel.label : "";
       }
       return "";
     };
-    
-    
+
     return (
       <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
         <th className="px-6 py-4 text-center">
@@ -118,13 +117,15 @@ const UserList = () => {
         </th>
 
         <td className="px-6 py-4 text-center">
-          <div className="ps-3">
-            <div className="font-normal text-gray-500">{user.email}</div>
-            <small className="flex justify-center">
-              <LiaPhoneSolid /> {user.contact}
+          <div className="flex flex-col items-center">
+            <div className="font-normal text-gray-500 mb-2">{user.email}</div>
+            <small className="flex items-center">
+              <LiaPhoneSolid className="mr-1 h-4 w-4" />
+              <span className="text-sm">{user.contact}</span>
             </small>
           </div>
         </td>
+
         <td className="px-6 py-4 text-center">{getRole()}</td>
         <td className="px-6 py-4 text-center">
           <div className="flex justify-center">
