@@ -1,5 +1,5 @@
 import React from 'react';
-import './FloatingLabelInput.css';
+import './FloatingLabelInput.css'; 
 
 const FloatingLabelInput = ({ label, type, name, value, onChange }) => {
     return (
@@ -11,6 +11,7 @@ const FloatingLabelInput = ({ label, type, name, value, onChange }) => {
                 value={value}
                 onChange={onChange}
                 required
+                placeholder={label}
             />
             <label className={`form-label ${value ? 'filled' : ''}`}>
                 {label}

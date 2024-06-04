@@ -1,5 +1,5 @@
 import React from 'react';
-import './FloatingLabelSelect.css'; 
+// import './FloatingLabelSelect.css'; 
 const FloatingLabelSelect = ({ label, name, value, onChange, options }) => {
     return (
         <div className="form-group">

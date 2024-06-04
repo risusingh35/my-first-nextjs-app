@@ -6,7 +6,7 @@ import FloatingLabelInput from "@/app/components/form/FloatingLabelInput";
 import FloatingLabelSelect from "@/app/components/form/FloatingLabelSelect";
 import FormHeaderWithBackButton from "@/app/components/form/FormHeaderWithBackButton";
 import role from "@/app/utils/staticData/role";
-import { operationAPI } from "@/app/utils/axios";
+import { operationAPI ,getAPI} from "@/app/utils/axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const AddEditUser = () => {
@@ -28,7 +28,7 @@ const AddEditUser = () => {
     const fetchUser = async () => {
       if (id) {
         try {
-          const response = await operationAPI.get(`/users/${id}`);
+          const response = await getAPI.get(`/users/${id}`);
           setUsersData(response.data);
         } catch (error) {
           console.error("Error fetching user data:", error);

@@ -3,7 +3,7 @@ import React, { useState, useEffect, CSSProperties } from "react";
 import ListingHeaderSection from "@/app/components/ListingHeaderSection";
 import ConfirmModal from "@/app/components/ConfirmModal";
 import useDebounce from "@/app/utils/useDebounce";
-import { operationAPI } from "@/app/utils/axios";
+import { operationAPI ,getAPI} from "@/app/utils/axios";
 import { useRouter } from "next/navigation";
 import { LiaPhoneSolid } from "react-icons/lia";
 import { MdDelete } from "react-icons/md";
@@ -48,7 +48,7 @@ const UserList = () => {
   const search = async (searchQuery) => {
     console.log("Searching for:", searchQuery);
     try {
-      const response = await operationAPI.get(`/users/search`, {
+      const response = await getAPI.get(`/users/search`, {
         params: { query: searchQuery },
       });
       console.log("userData", response);

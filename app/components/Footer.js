@@ -9,7 +9,7 @@ import {
 import Link from "next/link";
 
 export default function Footer() {
-  const [currentDateTime, setCurrentDateTime] = useState(new Date());
+  const [currentDateTime, setCurrentDateTime] = useState(null);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -19,7 +19,7 @@ export default function Footer() {
     return () => clearInterval(intervalId);
   }, []);
 
-  const formattedDateTime = currentDateTime.toLocaleString();
+  const formattedDateTime = currentDateTime ? currentDateTime.toLocaleString() : '';
 
   const SocialIcon = ({ className, icon: Icon, href }) => (
     <Link href={href} target="_blank">
@@ -36,8 +36,8 @@ export default function Footer() {
           <span className="text-xl font-medium">Risu Singh</span>
         </div>
         <div className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2">
-          <p >
-            © {currentDateTime.getFullYear()}
+          <p>
+            © {new Date().getFullYear()}
             <a
               href="mailto:risusingh35@gmail.com"
               className="text-gray-600 ml-1"
@@ -46,7 +46,7 @@ export default function Footer() {
               @risusingh35@gmail.com
             </a>
           </p>
-          <p>{formattedDateTime}</p>
+          {currentDateTime && <p>{formattedDateTime}</p>}
         </div>
 
         <div className="flex justify-center sm:justify-start mt-4 sm:mt-0">

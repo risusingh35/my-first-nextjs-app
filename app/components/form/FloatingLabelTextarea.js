@@ -1,5 +1,5 @@
 import React from 'react';
-import './FloatingLabelInput.css';
+// import './FloatingLabelInput.css';
 
 const FloatingLabelTextarea = ({ label, name, value, onChange }) => {
     return (

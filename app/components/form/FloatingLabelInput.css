@@ -1,15 +1,18 @@
 .form-group {
-    role: relative;
+    position: relative;
     margin-bottom: 1.5em;
+    display: flex;
+    flex-direction: column;
 }
 
 .form-control {
     font-size: 1em;
-    padding: 0.5em 0.5em 0.5em 0.5em;
+    padding:  1em;  /* Added more top padding for label */
     width: 300px;
     border: 1px solid #ccc;
     border-radius: 4px;
     outline: none;
+    transition: border-color 0.2s, padding-top 0.2s;
 }
 
 .form-control:focus {
@@ -17,21 +20,22 @@
 }
 
 .form-label {
-    role: absolute;
-    top: 50%;
-    left: 8px;
-    transform: translateY(-50%);
+    position: absolute;
+    top: 1em;  /* Aligns with input's padding */
+    left: 0.5em;
     transition: all 0.2s ease-out;
-    background-color: transparent;
+    background-color: white;
     padding: 0 5px;
     color: #aaa;
     pointer-events: none;
 }
 
 .form-control:focus + .form-label,
-.filled.form-label {
-    top: -10px;
-    left: 0px;
+.form-control:not(:placeholder-shown) + .form-label,
+.filled {
+    top: -0.75em;  /* Moves the label above the input */
+    left: 0.5em;
     font-size: 0.75em;
     color: #007bff;
+    background: white;
 }
