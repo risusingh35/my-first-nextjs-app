@@ -30,7 +30,7 @@ const UserList = () => {
   }, []);
   const fetchAllUsers = async () => {
     try {
-      const response = await operationAPI.get(`/users`);
+      const response = await getAPI.get(`/users`);
       console.log("userData", response);
       setUsersData(response.data);
       setIsLoader(false);
