@@ -14,6 +14,9 @@ const HeaderNav = () => {
                     <Link href="/pages/dashboard">
                         <span className="hover:text-gray-400">Dashboard</span>
                     </Link>
+                    <Link href="/pages/server-profiler/profiler">
+                        <span className="hover:text-gray-400">Profiler</span>
+                    </Link>
                     <Link href="/pages/about">
                         <span className="hover:text-gray-400">About</span>
                     </Link>
