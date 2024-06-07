@@ -16,6 +16,7 @@ const UserList = () => {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(false);
+  const [isSearchingOn, setIsSearchingOn] = useState(false);
   const [isLoader, setIsLoader] = useState(true);
   const [usersData, setUsersData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -26,6 +27,7 @@ const UserList = () => {
     borderColor: "red",
   };
   useEffect(() => {
+    console.log('useEffect fetch');
     fetchAllUsers();
   }, []);
   const fetchAllUsers = async () => {
@@ -41,7 +43,7 @@ const UserList = () => {
   useEffect(() => {
     if (debouncedSearchTerm.length >= 3) {
       search(debouncedSearchTerm);
-    } else if (!debouncedSearchTerm.length) {
+    } else if (!debouncedSearchTerm.length && isSearchingOn) {
       fetchAllUsers();
     }
   }, [debouncedSearchTerm]);
@@ -58,12 +60,13 @@ const UserList = () => {
     }
   };
   const handleAddEditButtonClick = (id) => {
+    console.log("handleAddEditButtonClick id------",id);
     if (id) {
-      router.push(`/pages/users/addEdit/${id}`, { scroll: false });
+      router.push(`/pages/users/addEdit?id=${id}`);
       console.log("Update user button clicked");
     } else {
       console.log("Create user button clicked");
-      router.push("/pages/users/addEdit", { scroll: false });
+      router.push("/pages/users/addEdit");
     }
   };
 
@@ -138,7 +141,6 @@ const UserList = () => {
         </td>
         <td className="px-6 py-4 text-center">
           <button
-            href="#"
             onClick={() => handleAddEditButtonClick(user._id)}
             className="font-medium text-3xl  p-2 text-blue-600 dark:text-blue-500 hover:text-white hover:bg-indigo-600"
           >
@@ -158,6 +160,7 @@ const UserList = () => {
 
   const handleSearchChange = (event) => {
     console.log("Search query:", event.target.value);
+    setIsSearchingOn(true)
     setSearchTerm(event.target.value);
   };
 
@@ -169,7 +172,7 @@ const UserList = () => {
         title="Users List"
         searchPlaceholder="Search Users"
         onSearchChange={handleSearchChange}
-        onButtonClick={handleAddEditButtonClick}
+        onButtonClick={()=>handleAddEditButtonClick(null)}
         buttonText="Create Users"
       />
       {isLoader && (

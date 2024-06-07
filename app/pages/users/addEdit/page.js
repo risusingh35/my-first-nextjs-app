@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useRouter, useParams } from "next/navigation";
+import { useRouter, useParams,useSearchParams  } from "next/navigation";
+import { io } from 'socket.io-client';
 import FloatingLabelInput from "@/app/components/form/FloatingLabelInput";
 import FloatingLabelSelect from "@/app/components/form/FloatingLabelSelect";
 import FormHeaderWithBackButton from "@/app/components/form/FormHeaderWithBackButton";
@@ -9,10 +10,14 @@ import roles from "@/app/utils/staticData/roles";
 import { operationAPI ,getAPI} from "@/app/utils/axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Notifications from "@/app/components/notifications/Notifications";
 const AddEditUser = () => {
   const backUrl = "/pages/users/list";
   const router = useRouter();
-  const { id } = useParams();
+  // const { id } = useParams();
+  const searchParams = useSearchParams()
+ 
+  const id = searchParams.get('id')
   const [formState, setUsersData] = useState({
     name: "",
     role: "",
@@ -26,6 +31,7 @@ const AddEditUser = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
+      console.log('id',id);
       if (id) {
         try {
           const response = await getAPI.get(`/users/${id}`);
@@ -79,7 +85,7 @@ const AddEditUser = () => {
             }
           });
       } else {
-        await operationAPI
+        await getAPI
           .post(`/users`, formData, {
             headers: {
               "Content-Type": "multipart/form-data",
@@ -87,7 +93,7 @@ const AddEditUser = () => {
           }) .then((res) => {
             if(res.status === 201){
               shadowToast('User Created Successful')
-              backtoListPage()
+              // backtoListPage()
             }
           });
       }
@@ -113,6 +119,7 @@ const AddEditUser = () => {
   }
   return (
     <div>
+         <Notifications />
         <ToastContainer />
       <FormHeaderWithBackButton
         title={formState._id ? "Edit User" : "Create User"}
