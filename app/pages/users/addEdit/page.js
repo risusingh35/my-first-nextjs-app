@@ -120,88 +120,95 @@ const AddEditUser = () => {
   const Loading = () => <h2>🌀 Loading...</h2>;
   return (
     <>
-    <Suspense fallback={<Loading />}>
-      <Notifications />
-      <ToastContainer />
-      <FormHeaderWithBackButton
-        title={formState._id ? "Edit User" : "Create User"}
-        backUrl={backUrl}
-      />
-      <div className="flex items-center justify-center bg-gray-100">
-        <div className="w-full max-w-md p-6 bg-white my-5 rounded-lg shadow-lg">
-          <form className="mt-2" onSubmit={handleSubmit}>
-            <FloatingLabelInput
-              label="Name"
-              name="name"
-              value={formState.name}
-              onChange={handleInputChange}
-            />
-            <FloatingLabelSelect
-              label="Select a Position"
-              name="role"
-              value={formState.role}
-              onChange={handleInputChange}
-              options={roles}
-            />
-            <FloatingLabelInput
-              label="Email"
-              name="email"
-              value={formState.email}
-              onChange={handleInputChange}
-            />
-            <FloatingLabelInput
-              label="Contact"
-              name="contact"
-              value={formState.contact}
-              onChange={handleInputChange}
-            />
-            <div className="mt-4">
-              <label className="block text-sm font-medium text-gray-700">
-                Profile Picture
-              </label>
-              <input
-                type="file"
-                onChange={handleImageChange}
-                className="mt-1 block w-full"
+      <Suspense>
+        <Notifications />
+      </Suspense>
+      <Suspense>
+        <ToastContainer />
+      </Suspense>
+      <Suspense fallback={<Loading />}>
+        <FormHeaderWithBackButton
+          title={formState._id ? "Edit User" : "Create User"}
+          backUrl={backUrl}
+        />
+        <div className="flex items-center justify-center bg-gray-100">
+          <div className="w-full max-w-md p-6 bg-white my-5 rounded-lg shadow-lg">
+            <form className="mt-2" onSubmit={handleSubmit}>
+              <FloatingLabelInput
+                label="Name"
+                name="name"
+                value={formState.name}
+                onChange={handleInputChange}
               />
-            </div>
-            <div className="flex items-center mt-4">
-              <span className="ml-2 text-gray-700">Status</span>
-              <label className="block ml-4">
+              <FloatingLabelSelect
+                label="Select a Position"
+                name="role"
+                value={formState.role}
+                onChange={handleInputChange}
+                options={roles}
+              />
+              <FloatingLabelInput
+                label="Email"
+                name="email"
+                value={formState.email}
+                onChange={handleInputChange}
+              />
+              <FloatingLabelInput
+                label="Contact"
+                name="contact"
+                value={formState.contact}
+                onChange={handleInputChange}
+              />
+              <div className="mt-4">
+                <label className="block text-sm font-medium text-gray-700">
+                  Profile Picture
+                </label>
                 <input
-                  type="checkbox"
-                  name="status"
-                  checked={formState.status}
-                  onChange={() =>
-                    setUsersData((prev) => ({ ...prev, status: !prev.status }))
-                  }
-                  className="hidden"
+                  type="file"
+                  onChange={handleImageChange}
+                  className="mt-1 block w-full"
                 />
-                <div
-                  className={`relative w-12 h-6 transition duration-200 ease-linear rounded-full ${
-                    formState.status ? "bg-green-500" : "bg-gray-300"
-                  }`}
-                >
+              </div>
+              <div className="flex items-center mt-4">
+                <span className="ml-2 text-gray-700">Status</span>
+                <label className="block ml-4">
+                  <input
+                    type="checkbox"
+                    name="status"
+                    checked={formState.status}
+                    onChange={() =>
+                      setUsersData((prev) => ({
+                        ...prev,
+                        status: !prev.status,
+                      }))
+                    }
+                    className="hidden"
+                  />
                   <div
-                    className={`absolute left-0 w-6 h-6 bg-white border-2 border-gray-300 rounded-full shadow-md transform transition-transform duration-200 ease-linear ${
-                      formState.status
-                        ? "translate-x-full border-green-500"
-                        : ""
+                    className={`relative w-12 h-6 transition duration-200 ease-linear rounded-full ${
+                      formState.status ? "bg-green-500" : "bg-gray-300"
                     }`}
-                  ></div>
-                </div>
-              </label>
-            </div>
-            <button
-              type="submit"
-              className="mt-4 w-full text-white bg-indigo-500 border-0 py-2 px-5 focus:outline-none hover:bg-indigo-600 rounded"
-            >
-              {formState._id ? "Update User" : "Create User"}
-            </button>
-          </form>
+                  >
+                    <div
+                      className={`absolute left-0 w-6 h-6 bg-white border-2 border-gray-300 rounded-full shadow-md transform transition-transform duration-200 ease-linear ${
+                        formState.status
+                          ? "translate-x-full border-green-500"
+                          : ""
+                      }`}
+                    ></div>
+                  </div>
+                </label>
+              </div>
+              <button
+                type="submit"
+                className="mt-4 w-full text-white bg-indigo-500 border-0 py-2 px-5 focus:outline-none hover:bg-indigo-600 rounded"
+              >
+                {formState._id ? "Update User" : "Create User"}
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
-    </Suspense>
+      </Suspense>
     </>
   );
 };
