@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, {Suspense, useState, useEffect } from "react";
 import { useRouter, useParams,useSearchParams  } from "next/navigation";
 import { io } from 'socket.io-client';
 import FloatingLabelInput from "@/app/components/form/FloatingLabelInput";
@@ -117,8 +117,9 @@ const AddEditUser = () => {
       theme: "light",
       });
   }
+  const  Loading=()=> <h2>🌀 Loading...</h2>
   return (
-    <div>
+    <Suspense fallback={<Loading />}>
          <Notifications />
         <ToastContainer />
       <FormHeaderWithBackButton
@@ -199,7 +200,7 @@ const AddEditUser = () => {
           </form>
         </div>
       </div>
-    </div>
+    </Suspense>
   );
 };
 
