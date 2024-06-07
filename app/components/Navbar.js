@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from 'next/image'
 import Link from "next/link";
 import { IoMenu, IoClose } from "react-icons/io5";
 import { usePathname } from 'next/navigation'
@@ -42,7 +43,7 @@ const Navbar = () => {
         }`}
       >
         <Link href="/" className="nav-link hover:text-gray-300 flex " activeClassName="active-link" exact>
-          <img
+          <Image
             className="rounded-full"
             src="https://media.licdn.com/dms/image/D4E03AQF8VYPM11U_VQ/profile-displayphoto-shrink_200_200/0/1682953959524?e=1721865600&v=beta&t=heQCVumdsRKd5qAUQsvQqgDMQhj7uA3msRu2fijm0Pk"
             height={70}

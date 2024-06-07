@@ -1,8 +1,6 @@
 "use client";
-
 import React, { Suspense, useState, useEffect } from "react";
-import { useRouter, useParams, useSearchParams } from "next/navigation";
-import { io } from "socket.io-client";
+import { useRouter, useSearchParams } from "next/navigation";
 import FloatingLabelInput from "@/app/components/form/FloatingLabelInput";
 import FloatingLabelSelect from "@/app/components/form/FloatingLabelSelect";
 import FormHeaderWithBackButton from "@/app/components/form/FormHeaderWithBackButton";
@@ -11,13 +9,13 @@ import { operationAPI, getAPI } from "@/app/utils/axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Notifications from "@/app/components/notifications/Notifications";
+
 const AddEditUser = () => {
   const backUrl = "/pages/users/list";
   const router = useRouter();
-  // const { id } = useParams();
   const searchParams = useSearchParams();
-
   const id = searchParams.get("id");
+
   const [formState, setUsersData] = useState({
     name: "",
     role: "",
@@ -102,12 +100,14 @@ const AddEditUser = () => {
       console.error("Error saving user data:", error);
     }
   };
+
   const backtoListPage = () => {
     router.push(backUrl);
   };
+
   const shadowToast = (msg) => {
     toast(msg, {
-      role: "top-right",
+      position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -117,16 +117,16 @@ const AddEditUser = () => {
       theme: "light",
     });
   };
-  const Loading = () => <h2>🌀 Loading...</h2>;
+
   return (
     <>
-      <Suspense>
+      <Suspense fallback={<div>Loading Notifications...</div>}>
         <Notifications />
       </Suspense>
-      <Suspense>
+      <Suspense fallback={<div>Loading Toast...</div>}>
         <ToastContainer />
       </Suspense>
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<div>Loading Form...</div>}>
         <FormHeaderWithBackButton
           title={formState._id ? "Edit User" : "Create User"}
           backUrl={backUrl}

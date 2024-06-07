@@ -2,6 +2,7 @@
 import Typewriter from 'typewriter-effect';
 import { FaLinkedin, FaFacebook, FaInstagramSquare ,FaGithub } from 'react-icons/fa';
 import Link from 'next/link';
+import Image from 'next/image'
 export default function Home() {
   const words = ['FullStack Developer', 'MERN Developer', "MEAN Developer", "MEVM Developer", 'NodeJS Developer', "ReactJS Developer", "AngularJS Developer", "VueJS Developer"];
   const SocialIcon = ({ className, icon: Icon, href }) => (
@@ -63,7 +64,7 @@ export default function Home() {
         </div>
         <div className='w-1/3 flex justify-center  bg-gray-100 h-min'>
           <div className='flex justify-center m-4 p-4'>
-            <img
+            <Image
               src="https://media.licdn.com/dms/image/D4E03AQF8VYPM11U_VQ/profile-displayphoto-shrink_200_200/0/1682953959524?e=1721865600&v=beta&t=heQCVumdsRKd5qAUQsvQqgDMQhj7uA3msRu2fijm0Pk"
               alt="Profile"
               className='h-48 w-48'

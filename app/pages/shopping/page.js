@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from "react";
+import Image from 'next/image'
 import products from '@/api/productItemList';
 import axios from "axios";
 const Shopping = () => {
@@ -27,7 +28,7 @@ const Shopping = () => {
                 <div className="border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden bg-white">
                    
                     <div className="h-64 overflow-hidden">
-                        <img alt="content" className="object-contain object-center h-full w-full" src={item.image}/>
+                        <Image alt="content" className="object-contain object-center h-full w-full" src={item.image}/>
                     </div>
                     <div className="p-6">
                         <h2 className="title-font text-2xl font-medium text-gray-900 mt-6 mb-3">{item.title}</h2>

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, CSSProperties } from "react";
+import Image from 'next/image'
 import ListingHeaderSection from "@/app/components/ListingHeaderSection";
 import ConfirmModal from "@/app/components/ConfirmModal";
 import useDebounce from "@/app/utils/useDebounce";
@@ -46,7 +47,7 @@ const UserList = () => {
     } else if (!debouncedSearchTerm.length && isSearchingOn) {
       fetchAllUsers();
     }
-  }, [debouncedSearchTerm]);
+  }, [debouncedSearchTerm,isSearchingOn]);
   const search = async (searchQuery) => {
     console.log("Searching for:", searchQuery);
     try {
@@ -111,7 +112,7 @@ const UserList = () => {
     return (
       <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
         <th className="px-6 py-4 text-center">
-          <img
+          <Image
             className="w-10 h-10 rounded-full mx-auto"
             src={getImageUrl()}
             alt={`${user.name} image`}
