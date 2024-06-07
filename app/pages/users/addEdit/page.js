@@ -1,23 +1,23 @@
 "use client";
 
-import React, {Suspense, useState, useEffect } from "react";
-import { useRouter, useParams,useSearchParams  } from "next/navigation";
-import { io } from 'socket.io-client';
+import React, { Suspense, useState, useEffect } from "react";
+import { useRouter, useParams, useSearchParams } from "next/navigation";
+import { io } from "socket.io-client";
 import FloatingLabelInput from "@/app/components/form/FloatingLabelInput";
 import FloatingLabelSelect from "@/app/components/form/FloatingLabelSelect";
 import FormHeaderWithBackButton from "@/app/components/form/FormHeaderWithBackButton";
 import roles from "@/app/utils/staticData/roles";
-import { operationAPI ,getAPI} from "@/app/utils/axios";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { operationAPI, getAPI } from "@/app/utils/axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Notifications from "@/app/components/notifications/Notifications";
 const AddEditUser = () => {
   const backUrl = "/pages/users/list";
   const router = useRouter();
   // const { id } = useParams();
-  const searchParams = useSearchParams()
- 
-  const id = searchParams.get('id')
+  const searchParams = useSearchParams();
+
+  const id = searchParams.get("id");
   const [formState, setUsersData] = useState({
     name: "",
     role: "",
@@ -31,7 +31,7 @@ const AddEditUser = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      console.log('id',id);
+      console.log("id", id);
       if (id) {
         try {
           const response = await getAPI.get(`/users/${id}`);
@@ -59,7 +59,7 @@ const AddEditUser = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+
     const formData = new FormData();
     formData.append("name", formState.name);
     formData.append("role", formState.role);
@@ -72,16 +72,16 @@ const AddEditUser = () => {
 
     try {
       if (formState._id) {
-       
         await operationAPI
           .put(`/users/${id}`, formData, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
-          }) .then((res) => {
-            if(res.status === 200){
-              shadowToast('User Updated Successful')
-              backtoListPage()
+          })
+          .then((res) => {
+            if (res.status === 200) {
+              shadowToast("User Updated Successful");
+              backtoListPage();
             }
           });
       } else {
@@ -90,9 +90,10 @@ const AddEditUser = () => {
             headers: {
               "Content-Type": "multipart/form-data",
             },
-          }) .then((res) => {
-            if(res.status === 201){
-              shadowToast('User Created Successful')
+          })
+          .then((res) => {
+            if (res.status === 201) {
+              shadowToast("User Created Successful");
               // backtoListPage()
             }
           });
@@ -102,10 +103,9 @@ const AddEditUser = () => {
     }
   };
   const backtoListPage = () => {
-    
-    router.push(backUrl)
+    router.push(backUrl);
   };
-  const shadowToast= (msg)=>{
+  const shadowToast = (msg) => {
     toast(msg, {
       role: "top-right",
       autoClose: 5000,
@@ -115,13 +115,14 @@ const AddEditUser = () => {
       draggable: true,
       progress: undefined,
       theme: "light",
-      });
-  }
-  const  Loading=()=> <h2>🌀 Loading...</h2>
+    });
+  };
+  const Loading = () => <h2>🌀 Loading...</h2>;
   return (
+    <>
     <Suspense fallback={<Loading />}>
-         <Notifications />
-        <ToastContainer />
+      <Notifications />
+      <ToastContainer />
       <FormHeaderWithBackButton
         title={formState._id ? "Edit User" : "Create User"}
         backUrl={backUrl}
@@ -201,6 +202,7 @@ const AddEditUser = () => {
         </div>
       </div>
     </Suspense>
+    </>
   );
 };
 
