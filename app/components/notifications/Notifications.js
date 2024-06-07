@@ -14,7 +14,7 @@ const Notifications = () => {
     // });
     socket.on('testEmitter', (data) => {
       console.log('data Notifications',data);
-      toast.success(`${data.msg} has been created.`);
+      toast.success(`${data.msg}`);
     });
     // Cleanup the effect
     return () => {

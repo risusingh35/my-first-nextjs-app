@@ -116,6 +116,10 @@ const UserList = () => {
             className="w-10 h-10 rounded-full mx-auto"
             src={getImageUrl()}
             alt={`${user.name} image`}
+             height={10}
+             width={10}
+             quality={100}
+             unoptimized
           />
           <div className="text-gray-900 dark:text-white">{user.name}</div>
         </th>

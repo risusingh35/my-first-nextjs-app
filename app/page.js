@@ -68,6 +68,10 @@ export default function Home() {
               src="https://media.licdn.com/dms/image/D4E03AQF8VYPM11U_VQ/profile-displayphoto-shrink_200_200/0/1682953959524?e=1721865600&v=beta&t=heQCVumdsRKd5qAUQsvQqgDMQhj7uA3msRu2fijm0Pk"
               alt="Profile"
               className='h-48 w-48'
+              width={50}
+              height={50}
+              quality={100}
+              unoptimized
             />
           </div>
         </div>

@@ -49,6 +49,8 @@ const Navbar = () => {
             height={70}
             width={70}
             alt="Logo"
+            quality={100}
+            unoptimized
           />
         </Link>
         <Link href="/pages/about" className={`nav-link hover:text-gray-300 flex  ${pathname === '/pages/about' ? 'text-[#ff014f]' : ''}`} activeClassName="active-link">

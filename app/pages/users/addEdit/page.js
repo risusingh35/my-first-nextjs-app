@@ -8,7 +8,7 @@ import roles from "@/app/utils/staticData/roles";
 import { operationAPI, getAPI } from "@/app/utils/axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Notifications from "@/app/components/notifications/Notifications";
+// import Notifications from "@/app/components/notifications/Notifications";
 
 const AddEditUser = () => {
   const backUrl = "/pages/users/list";
@@ -120,9 +120,9 @@ const AddEditUser = () => {
 
   return (
     <>
-      <Suspense fallback={<div>Loading Notifications...</div>}>
+      {/* <Suspense fallback={<div>Loading Notifications...</div>}>
         <Notifications />
-      </Suspense>
+      </Suspense> */}
       <Suspense fallback={<div>Loading Toast...</div>}>
         <ToastContainer />
       </Suspense>
