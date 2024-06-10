@@ -6,7 +6,7 @@ const Profiler = () => {
   const [streamData, setStreamData] = useState();
   const [isNodeProfiler, setIsNodeProfiler] = useState(true);
   const [simulateIOData, setSimulateIOData] = useState(null);
-  const [CupIntensiveData, setCupIntensiveData] = useState(null);
+  const [cpuIntensiveData, setCpuIntensiveData] = useState(null);
   const readLargeFileStream = async () => {
     try {
       const { data } = await getAPI.get("/readlargefilestream");
@@ -17,18 +17,17 @@ const Profiler = () => {
     }
   };
 
-  const fetchSimulateCupIntensive = async () => {
-    let profilerData, data;
+  const fetchSimulateCpuIntensive = async (useWorker) => {
+    setCpuIntensiveData(null);
+    const endpoint = useWorker ? '/profiler/cpu-intensive-worker' : '/profiler/cpu-intensive-no-worker';
     try {
-      if (isNodeProfiler) {
-        data = await getAPI.get("/profiler/cpu-intensive");
-      } else {
-        data = await operationAPI.get("/profilercpu-intensive");
-      }
-      profilerData = data.data;
-      setCupIntensiveData(profilerData);
+      const response = await getAPI.get(endpoint);
+      const data = response.data.
+      result;
+      console.log('data------',data);
+      setCpuIntensiveData(data);
     } catch (error) {
-      console.log("Error while fetching profiler data");
+      console.error('Error fetching data:', error);
     }
   };
   const fetchSimulateIO = async () => {
@@ -53,20 +52,32 @@ const Profiler = () => {
     <Fragment>
       <h1 className="text-3xl font-bold mb-4">Backend Profiler</h1>
       <div className="flex mb-4">
-        <div className="mr-4">
-          <h2 className="font-bold">Simulate a CPU-intensive task</h2>
-          <button
-            className="px-4 py-2 rounded bg-green-500 text-white"
-            onClick={() => fetchSimulateCupIntensive()}
-          >
-            Simulate CPU Task
-          </button>
-          <div className="mt-4 border border-gray-300 p-4 rounded">
-            <pre className="whitespace-pre-wrap">
-              {CupIntensiveData?.cpuResult}
-            </pre>
-          </div>
-        </div>
+      <div className="mr-4">
+      <h2 className="font-bold">Simulate a CPU-intensive task</h2>
+      <button
+        className="px-4 py-2 rounded bg-green-500 text-white mr-2"
+        onClick={() => fetchSimulateCpuIntensive(false)}
+      >
+        Simulate CPU Task No Worker
+      </button>
+      <button
+        className="px-4 py-2 rounded bg-green-500 text-white"
+        onClick={() => fetchSimulateCpuIntensive(true)}
+      >
+        Simulate CPU Task With Worker
+      </button>
+      <div className="mt-4 border border-gray-300 p-4 rounded">
+        {cpuIntensiveData && (
+          <pre className="whitespace-pre-wrap">
+            Result: {cpuIntensiveData?.result}
+            <br />
+            Duration: {cpuIntensiveData?.duration} ms
+            <br />
+            Method: {cpuIntensiveData?.method}
+          </pre>
+        )}
+      </div>
+    </div>
         <div>
           <h2 className="font-bold">Simulate an I/O operation</h2>
           <button

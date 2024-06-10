@@ -41,6 +41,22 @@ const UserList = () => {
       console.error("Error fetching user data:", error);
     }
   };
+  setTimeout(()=>{
+    if (isLoader) {
+      toast("Your Server is Down ,Please try after some time", {
+        role: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      setIsLoader(false);
+    }
+   
+  },10000)
   useEffect(() => {
     if (debouncedSearchTerm.length >= 3) {
       search(debouncedSearchTerm);

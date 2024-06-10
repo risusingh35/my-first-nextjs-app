@@ -8,7 +8,7 @@ const operationAPI = axios.create({
 });
 
 const getAPI = axios.create({
-  baseURL: 'http://localhost:4001',
+  baseURL: 'https://risu-singh-app.onrender.com/'||'http://localhost:4001',
   headers: {
     'Content-Type': 'application/json',
   },

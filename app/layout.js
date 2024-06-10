@@ -18,13 +18,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
        <Providers>
        <body className={inter.className}>
-      <Suspense>
+      {/* <Suspense> */}
        <Notifications />
         <Header />
         {/* <Navbar/> */}
         <main className="pb-5">{children}</main>
         <Footer />
-    </Suspense>
+    {/* </Suspense> */}
       </body>
     </Providers>
     </html>
