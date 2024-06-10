@@ -3,7 +3,7 @@ import Typewriter from 'typewriter-effect';
 import { FaLinkedin, FaFacebook, FaInstagramSquare ,FaGithub } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image'
-import { operationAPI ,getAPI} from "@/app/utils/axios";
+
 export default function Home() {
   const words = ['FullStack Developer', 'MERN Developer', "MEAN Developer", "MEVM Developer", 'NodeJS Developer', "ReactJS Developer", "AngularJS Developer", "VueJS Developer"];
   const SocialIcon = ({ className, icon: Icon, href }) => (
@@ -13,10 +13,7 @@ export default function Home() {
       </div>
     </Link>
   );
-  setInterval(()=>{
-    const response = getAPI.get(`/users`);
-    console.log("userData", response);
-  },(10*60*1000))
+
   return (
     <div className='w-full h-full'>
       <div className='flex'>
